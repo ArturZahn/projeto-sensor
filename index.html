@@ -72,7 +72,6 @@
 
         function acel()
         {
-            alert(typeof device != "undefined")
             if(typeof device != "undefined") $(".hardware").html(`${device.model}<br>${device.platform} ${device.version}`);
             else $(".hardware").html(`dispositivo: desconhecido`);
 
