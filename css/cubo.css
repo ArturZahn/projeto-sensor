@@ -1,0 +1,107 @@
+.ex {
+    perspective: 5800px;
+    
+    font-size: 80px;
+    display: inline-block;
+}
+
+.cube2 {
+    transform-style: preserve-3d;
+}
+
+.cube {
+    transform-style: preserve-3d;
+    transform-origin: center;
+    /* transform: rotateX(0deg) rotateY(0deg); */
+    width: 4em;
+    height: 4em;
+}
+
+.face {
+    width: 4em;
+    height: 4em;
+    position: absolute;
+    background-color: #888;
+
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 20% 60% 20%;
+}
+
+.face > .c:hover {
+    background-color: #4448;
+}
+
+.face .q {
+    border: 5px solid #0f0;
+}
+.face .m {
+    border: 5px solid #f00;
+}
+.face .c {
+    border: 5px solid #00f;
+    font-size: 0.7em;
+}
+
+.face .c .preen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.face #t1 {
+    border: 5px solid #ff00ea;
+}
+
+.preen {
+    /* border: 1px solid rgb(255, 115, 0); */
+    height: 100%;
+    width: 100%;
+}
+
+
+/* .preen:hover {
+    background-color: #4448;
+} */
+.hoverQ0 .q0,
+.hoverQ1 .q1,
+.hoverQ2 .q2,
+.hoverQ3 .q3,
+.hoverQ4 .q4,
+.hoverQ5 .q5,
+.hoverQ6 .q6,
+.hoverQ7 .q7,
+.hoverM0 .m0,
+.hoverM1 .m1,
+.hoverM2 .m2,
+.hoverM3 .m3,
+.hoverM4 .m4,
+.hoverM5 .m5,
+.hoverM6 .m6,
+.hoverM7 .m7,
+.hoverM8 .m8,
+.hoverM9 .m9,
+.hoverM10 .m10,
+.hoverM11 .m11 {
+    background-color: #4448;
+}
+
+
+.top {
+    transform: rotateX(90deg) translateZ(2em);
+}
+.bottom {
+    transform: rotateX(-90deg) translateZ(2em);
+}
+.right {
+    transform: rotateY(90deg) translateZ(2em);
+}
+.left {
+    transform: rotateY(-90deg) translateZ(2em);
+}
+.front {
+    transform: rotateX(0deg) translateZ(2em);
+}
+.back {
+    transform: rotateY(180deg) translateZ(2em);
+}

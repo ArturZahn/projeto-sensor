@@ -39,234 +39,199 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
     
 <link  rel = "manifest" href = "manifest.json"/>
-	<script type = "module"> 
-	import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
-	const el = document.createElement('pwa-update');
-	documento.corpo.appendChild(el); 
-	</script>
-	
+    <script type = "module"> 
+    import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+    const el = document.createElement('pwa-update');
+    documento.corpo.appendChild(el); 
+    </script>
+    
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="css/cubo.css">
     <title>App Sensores</title>
-	
-	<script type="text/javascript">
-	     window.onload=function()
-		 {
-		 
-		    $("#exibeHardware").hide();
-			$("#exibeRede").hide();
-			$("#exibeBateria").hide();
-			$("#exibeAcelerometro").hide();
-		    $("#circulo").hide();
+    
+    <script type="text/javascript">
+        window.onload=function()
+        {
 
-			$("body").removeClass("ui-overlay-a");
-		   	$("body").addClass("ui-overlay-b");
-			
-			document.addEventListener('deviceready', iniciar); 		 	 
-		 }
-		 
-		 function iniciar()
-		 {
-		   navigator.vibrate([100]);
-		 }
-		 
-		 function hardware()
-		 {
-		    navigator.vibrate([300]);
-			$("#exibeHardware").show();
-		    $("#exibeRede").hide();
-			$("#exibeBateria").hide();
-			$("#exibeAcelerometro").hide();
-			$("#circulo").hide();
-			
-			var saida="";
-			saida += "Modelo  do Dispositivo: " + device.model;
-			saida += "<br>Sistema Operacional: " + device.platform;
-			saida += "<br>Versão do SO: " + device.version;
-			saida += "<br>Fabricante: " + device.manufacturer;
-			saida += "<br>Serial: " + device.serial;
-			
-			$("#exibeHardware").html(saida);	
-		 
-		 
-		 }
-		 
-		 function rede()
-		 {
-		     navigator.vibrate([300]);
-			$("#exibeHardware").hide();
-		    $("#exibeRede").show();
-			$("#exibeBateria").hide();
-			$("#exibeAcelerometro").hide();
-		    $("#circulo").hide();
-			
-			var rede = navigator.connection.type;
-			
-			var tipo = { };
-			
-			tipo[Connection.UNKNOW] = "Conexão Desconhecida :(";
-			tipo[Connection.ETHERNET] = "Conexão Cabeada";
-			tipo[Connection.WIFI] = "Conexão WI-FI  :) ";
-			tipo[Connection.CELL_2G]= "Conexão 2G";
-			tipo[Connection.CELL_3G]= "Conexão 3G";
-			tipo[Connection.CELL_4G]= "Conexão 4G";
-			tipo[Connection.NONE] = "Nenhuma Conexão :(";
-			
-			$("#exibeRede").html(tipo[rede]);	 
-		 		 
-		 }
-		 
-		 function bateria()
-		 {
-		    navigator.vibrate([300]);
-			$("#exibeHardware").hide();
-		    $("#exibeRede").hide();
-			$("#exibeBateria").show();
-			$("#exibeAcelerometro").hide();
-		    $("#circulo").hide();
-			
-			navigator.getBattery().then(function(battery)
-			{
-			   $("#exibeBateria").html("Nível da bateria:" + battery.level * 100 + "%");
-			   battery.onlevelchange = function()
-			   {
-			      $("#exibeBateria").html("Nível da bateria:" + battery.level * 100 + "%");			   
-			   }  						
-			})	 
-		 }
-		 
-		 function acel()
-		 {
-		    navigator.vibrate([300]);
-			$("#exibeHardware").hide();
-		    $("#exibeRede").hide();
-			$("#exibeBateria").hide();
-			$("#exibeAcelerometro").show();
-			
-			if(window.DeviceOrientationEvent)
-			{
-			
-			   window.addEventListener('deviceorientation', function(event)
-			   {
-			       var x= Math.round(event.gamma);
-				   var y= Math.round(event.beta);
-				   var r= Math.round(event.alpha);
-				   
-				   var saida= "Eixo X: " + x;
-				   saida += "<br> Eixo Y: " + y;
-				   saida += "<br>Rotação: " + r;
-				   
-				   $("#exibeAcelerometro").html(saida);
-				   
-				   $("#circulo").show();
-				   
-				   atualX= $("#circulo").offset().left;
-				   atualY= $("#circulo").offset().top;
-				   
-				   novaX= atualX + x;
-				   novaY = atualY + y;
-				   
-				   $("#circulo").offset({left:novaX,top:novaY});
-				   
-				   
-		       },true)
-			}   
-			else
+        $("body").removeClass("ui-overlay-a");
+        $("body").addClass("ui-overlay-b");
+        
+        document.addEventListener('deviceready', iniciar);               
+        }
+        
+        function iniciar()
+        {
+            navigator.vibrate([100]);
+
+            cube = $(".cube");
+
+            acel();
+        }
+        
+        function acel()
+        {
+        // navigator.getBattery().then(function(battery)
+        // {
+        //    $("#exibeBasteria").html("Nível da bateria:" + battery.level * 100 + "%");
+        //    battery.onlevelchange = function()
+        //    {
+        //       $("#exibeBsateria").html("Nível da bateria:" + battery.level * 100 + "%");               
+        //    }                          
+        // })    
+        navigator.vibrate([300]);
+        $("#exibeAcelerometro").show();
+        
+        if(window.DeviceOrientationEvent)
+        {
+        
+            window.addEventListener('deviceorientation', function(event)
             {
-               alert("Recurso não disponível no seu dispositivo!!");			
-		    }			 
-		 }
-		 
-		 function sair()
-		 {
-		    navigator.notification.confirm('Deseja sair do aplicativo? ', resposta,'Mensagem',['Não','Sim']);
-		 	 
-		 }
-		 
-		 function resposta(r)
-		 {
-		    if( r== 2)
-			{
-			    navigator.app.exitApp();
-			} 
-		 
-		 }
-		    
-	
-	</script>
-	
-	<style>
-	   #rodape
-	   {
-	      position: absolute;
-		  width: 100%;
-		  bottom: 0;   		
-	   }
-	   
-	   #circulo
-	   {
-	       border-radius: 100%;
-		  border: 5px solid red;
-		  width: 100px;
-		  height: 100px;
-		  background-color:  azure;   
-	   
-	   }
-	 
-	</style>
-	
-	
+                console.log("asdasdas")
+                var x= Math.round(event.gamma);
+                var y= Math.round(event.beta);
+                var r= Math.round(event.alpha);
+
+                moved(x,y);
+                
+                // var saida= "Eixo X: " + x;
+                // saida += "<br> Eixo Y: " + y;
+                // saida += "<br>Rotação: " + r;
+                
+                // $("#exibeAcelerometro").html(saida);
+                
+                
+                
+                novaX= atualX + x;
+                novaY = atualY + y;
+                
+                
+                
+            },true)
+        }   
+        else
+        {
+            alert("Recurso não disponível no seu dispositivo!!");            
+        }             
+        }
+        
+        function sair()
+        {
+            navigator.notification.confirm('Deseja sair do aplicativo? ', resposta,'Mensagem',['Não','Sim']);
+            
+        }
+        
+        function resposta(r)
+        {
+        if( r== 2)
+        {
+            navigator.app.exitApp();
+        } 
+        
+        }
+        var cube;
+        var cubeX = 0;
+        var cubeY = 90;
+        var isDrawing = false;
+
+        function moved(x, y)
+        {
+            cubeX += x;
+            cubeY += y;
+
+            if(cubeX >= 360) cubeX -= 360;
+            else if(cubeX < 0) cubeX += 360;
+
+            // if(cubeY >= 360) cubeY -= 360;
+            // else if(cubeY < 0) cubeY += 360;
+            if(cubeY >= 180) cubeY = 180;
+            else if(cubeY < 0) cubeY = 0;
+
+            // cube.css("transform", `rotateY(${cubeX}deg) rotateX(${-cubeY}deg)`);
+            cube.css("transform", `rotateY(${cubeX}deg)`);
+            $(".cube2").css("transform", `rotateX(${-cubeY+90}deg)`);
+
+        }
+        
+    
+    </script>
+    
+    <style>
+       #rodape
+       {
+          position: absolute;
+          width: 100%;
+          bottom: 0;           
+       }
+       
+       #circulo
+       {
+           border-radius: 100%;
+          border: 5px solid red;
+          width: 100px;
+          height: 100px;
+          background-color:  azure;   
+       
+       }
+     
+    </style>
+    
+    
 </head>
 
 <body>
   <div data-role="page"  id="principal" class="ui-page-theme-b">
        
-	    <div data-role="header">
-		    <h1>Celular Virtual</h1>
-		</div>
+        <div data-role="header">
+            <h1>Celular Virtual</h1>
+        </div>
 
         <div data-role="main" id="conteudo" class="ui-content">
 
-           <button id="btn1" onclick="location.href='index.html#hardware'  ">Iniciar</button>		
-		   <button id="btn7" onclick="sair()"> Sair </button>
+           <button id="btn1" onclick="location.href='index.html#hardware'  ">Iniciar</button>        
+           <button id="btn7" onclick="sair()"> Sair </button>
        
   
         </div>
-		
-		<div data-role="footer" id="rodape">
-		  <h1>App Sensores 1.0</h1>
-		</div>  
+        
+        <div data-role="footer" id="rodape">
+          <h1>App Sensores 1.0</h1>
+        </div>  
     </div>
-	
-	<div data-role="page" id="hardware" class="ui-page-theme-b">
-	    
-		 <div data-role="header">
-		     <h1>Sensores Hardware/Rede</h1>
-		 </div>
-		 
-		 <div data-role="main" id="conteudo"  class="ui-content">
-		   
-		     <div id="exibeHardware"></div>
-			 <div id="exibeRede"></div>
-			 <div id="exibeBateria"></div>
-			 <div id="exibeAcelerometro"></div>
-			 <div id="circulo"></div>
-			 
-			 <button id="btn2" onclick="hardware()">Exibe Hardware</button>
-			 <button id="btn3" onclick="rede()">Exibe Rede</button>
-			 <button id="btn4" onclick="bateria()">Exibe Bateria</button>
-			 <button id="btn5" onclick="acel()">Exibe Acelerômetro</button>
-			 <button id="btn6" onclick="location.href='index.html#principal' ">Voltar</button>
-			 
-		</div>
+    
+    <div data-role="page" id="hardware" class="ui-page-theme-b">
+        
+         <div data-role="header">
+             <h1>Sensores Hardware/Rede</h1>
+         </div>
+         
+         <div data-role="main" id="conteudo"  class="ui-content">
+            <div style="display: flex;align-items: center;justify-content: center; margin: 20px 0 40px 0;">
+                <div class="ex">
+                    <div class="cube2">
+                        <div class="cube">
+                            <div class="face top">   <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">top   </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
+                            <div class="face bottom"><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">bottom</div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
+                            <div class="face right"> <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">right </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
+                            <div class="face left">  <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">left  </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
+                            <div class="face front"> <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">front </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
+                            <div class="face back">  <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">back  </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <button id="btn6" onclick="location.href='index.html#principal' ">Voltar</button>
+             
+        </div>
 
         <div data-role="footer" id="rodape">
             <h1>App Sensores 1.0</h1>
         </div>
-	</div>	
-	
+    </div>    
+    
       <script type="text/javascript" src="js/jquery.min.js"></script>
-	 <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-      <script type="text/javascript" src="cordova.js"></script>	 
+     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+      <script type="text/javascript" src="cordova.js"></script>     
   
 </body>
 
