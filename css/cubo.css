@@ -1,3 +1,17 @@
+.bat {
+    background-image: url("../img/bat.png");
+    background-size: 3.8em;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: #000;
+    font-size: 0.8em;
+}
+
+.batNum {
+    margin-right: -1em;
+}
+
 .ex {
     perspective: 5800px;
     

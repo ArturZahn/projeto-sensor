@@ -67,63 +67,28 @@
             cube = $(".cube");
 
             acel();
+            setTimeout(()=>{moved(90, 90, 90)},200);
         }
-        
-        // function acel()
-        // {
-        // // navigator.getBattery().then(function(battery)
-        // // {
-        // //    $("#exibeBasteria").html("Nível da bateria:" + battery.level * 100 + "%");
-        // //    battery.onlevelchange = function()
-        // //    {
-        // //       $("#exibeBsateria").html("Nível da bateria:" + battery.level * 100 + "%");               
-        // //    }                          
-        // // })    
-        // navigator.vibrate([300]);
-        // $("#exibeAcelerometro").show();
-        
-        // if(window.DeviceOrientationEvent)
-        // {
-        
-        //     window.addEventListener('deviceorientation', function(event)
-        //     {
-        //         console.log("asdasdas")
 
-                
-        //         var x= Math.round(event.gamma);
-        //         var y= Math.round(event.beta);
-        //         var r= Math.round(event.alpha);
-                
-        //         moved(x,y);
-                
-        //         var saida = `X: ${x}<br>Y: ${y}<br>R: ${r}`;
-                
-                
-        //         $(".front > x:nth-child(5) > div").html(saida)
-                
-                
-                
-        //         // novaX= atualX + x;
-        //         // novaY = atualY + y;
-                
-                
-                
-        //     },true)
-        // }   
-        // else
-        // {
-        //     alert("Recurso não disponível no seu dispositivo!!");            
-        // }             
-        // }
-       
         function acel()
         {
+            navigator.getBattery().then(function(battery)
+            {
+                function atualizarBateria(b)
+                {
+                    $(".batNum").html(`${b*100}%`);
+                }
+
+                atualizarBateria(battery.level);
+                battery.onlevelchange = function() {
+                    atualizarBateria(battery.level);
+                }                          
+            })  
+
+        navigator.vibrate([300]);
+        $("#exibeAcelerometro").show();
             
             navigator.vibrate([300]);
-            $("#exibeHardware").hide();
-            $("#exibeRede").hide();
-            $("#exibeBateria").hide();
-            $("#exibeAcelerometro").show();
             
             if(window.DeviceOrientationEvent)
             {
@@ -141,7 +106,7 @@
 
                     var saida = `X: ${x}<br>Y: ${y}<br>R: ${r}`;
 
-                    moved(x, y, r)
+                    moved(x, y, r);
                 
                 
                 $(".front > x:nth-child(5) > div").html(saida)
@@ -275,11 +240,11 @@
                     <div class="cube2">
                         <div class="cube">
                             <div class="face top">   <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen"><img style="height: 3em" src="./img/rosadosventos.png"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
-                            <div class="face bottom"><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">bottom                             </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
-                            <div class="face right"> <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">right                              </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
-                            <div class="face left">  <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">left                               </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
-                            <div class="face front"> <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">front                              </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
-                            <div class="face back">  <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">back                               </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
+                            <div class="face bottom"><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">bottom                                                 </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
+                            <div class="face right"> <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen bat"><div class="batNum"></div>                         </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
+                            <div class="face left">  <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen bat"><div class="batNum"></div>                         </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
+                            <div class="face front"> <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen bat"><div class="batNum"></div>                         </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
+                            <div class="face back">  <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen bat"><div class="batNum"></div>                         </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
                         </div>
                     </div>
                 </div>
