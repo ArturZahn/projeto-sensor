@@ -76,7 +76,7 @@
             {
                 function atualizarBateria(b)
                 {
-                    $(".batNum").html(`${b*100}%`);
+                    $(".batNum").html(`${Math.round(b*100)}%`);
                 }
 
                 atualizarBateria(battery.level);
@@ -259,9 +259,9 @@
         </div>
     </div>    
     
-      <script type="text/javascript" src="js/jquery.min.js"></script>
-     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-      <script type="text/javascript" src="cordova.js"></script>     
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>     
   
 </body>
 
