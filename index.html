@@ -87,22 +87,23 @@
             window.addEventListener('deviceorientation', function(event)
             {
                 console.log("asdasdas")
+
+                
                 var x= Math.round(event.gamma);
                 var y= Math.round(event.beta);
                 var r= Math.round(event.alpha);
-
+                
                 moved(x,y);
                 
-                // var saida= "Eixo X: " + x;
-                // saida += "<br> Eixo Y: " + y;
-                // saida += "<br>Rotação: " + r;
-                
-                // $("#exibeAcelerometro").html(saida);
+                var saida = `X: ${x}<br>Y: ${y}<br>R: ${r}`;
                 
                 
+                $(".front > x:nth-child(5) > div").html(saida)
                 
-                novaX= atualX + x;
-                novaY = atualY + y;
+                
+                
+                // novaX= atualX + x;
+                // novaY = atualY + y;
                 
                 
                 
