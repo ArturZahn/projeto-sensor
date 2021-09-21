@@ -140,6 +140,8 @@
                     // saida += "<br>Rotação: " + r;
 
                     var saida = `X: ${x}<br>Y: ${y}<br>R: ${r}`;
+
+                    moved(x, y)
                 
                 
                 $(".front > x:nth-child(5) > div").html(saida)
@@ -196,21 +198,23 @@
 
         function moved(x, y)
         {
-            cubeX += x;
-            cubeY += y;
+            // cubeX += x;
+            // cubeY += y;
 
-            if(cubeX >= 360) cubeX -= 360;
-            else if(cubeX < 0) cubeX += 360;
+            // if(cubeX >= 360) cubeX -= 360;
+            // else if(cubeX < 0) cubeX += 360;
 
-            // if(cubeY >= 360) cubeY -= 360;
-            // else if(cubeY < 0) cubeY += 360;
-            if(cubeY >= 180) cubeY = 180;
-            else if(cubeY < 0) cubeY = 0;
+            // // if(cubeY >= 360) cubeY -= 360;
+            // // else if(cubeY < 0) cubeY += 360;
+            // if(cubeY >= 180) cubeY = 180;
+            // else if(cubeY < 0) cubeY = 0;
 
-            // cube.css("transform", `rotateY(${cubeX}deg) rotateX(${-cubeY}deg)`);
-            cube.css("transform", `rotateY(${cubeX}deg)`);
-            $(".cube2").css("transform", `rotateX(${-cubeY+90}deg)`);
+            // // cube.css("transform", `rotateY(${cubeX}deg) rotateX(${-cubeY}deg)`);
+            // cube.css("transform", `rotateY(${cubeX}deg)`);
+            // $(".cube2").css("transform", `rotateX(${-cubeY+90}deg)`);
 
+            cube.css("transform", `rotateY(${x}deg)`);
+            $(".cube2").css("transform", `rotateX(${y}deg)`);
         }
         
     
