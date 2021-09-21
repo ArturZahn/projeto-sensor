@@ -67,16 +67,20 @@
             cube = $(".cube");
 
             acel();
-            setTimeout(()=>{moved(90, 90, 90)},200);
+            setTimeout(()=>{moved(90, 40, 0)},200);
         }
 
         function acel()
         {
+            if(typeof device != "undefined") $(".hardware").html(`${device.model}<br>${device.platform} ${device.version}`);
+            else $(".hardware").html(`dispositivo: desconhecido`);
+
             navigator.getBattery().then(function(battery)
             {
+                alert("a")
                 function atualizarBateria(b)
                 {
-                    $(".batNum").html(`${Math.round(b*100)}%`);
+                    $(".batNum").html(`${b*100}%`);
                 }
 
                 atualizarBateria(battery.level);
@@ -150,10 +154,10 @@
         
         function resposta(r)
         {
-        if( r== 2)
-        {
-            navigator.app.exitApp();
-        } 
+            if( r== 2)
+            {
+                navigator.app.exitApp();
+            } 
         
         }
         var cube;
@@ -186,22 +190,21 @@
     </script>
     
     <style>
-       #rodape
-       {
-          position: absolute;
-          width: 100%;
-          bottom: 0;           
-       }
-       
-       #circulo
-       {
-           border-radius: 100%;
-          border: 5px solid red;
-          width: 100px;
-          height: 100px;
-          background-color:  azure;   
-       
-       }
+        #rodape
+        {
+            position: absolute;
+            width: 100%;
+            bottom: 0;           
+        }
+        
+        #circulo
+        {
+            border-radius: 100%;
+            border: 5px solid red;
+            width: 100px;
+            height: 100px;
+            background-color:  azure;   
+        }
      
     </style>
     
@@ -240,11 +243,11 @@
                     <div class="cube2">
                         <div class="cube">
                             <div class="face top">   <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen"><img style="height: 3em" src="./img/rosadosventos.png"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
-                            <div class="face bottom"><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">bottom                                                 </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
+                            <div class="face bottom"><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">                                                       </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
                             <div class="face right"> <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen bat"><div class="batNum"></div>                         </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
                             <div class="face left">  <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen bat"><div class="batNum"></div>                         </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
                             <div class="face front"> <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen">                                                       </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
-                            <div class="face back">  <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen bat"><div class="batNum"></div>                         </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
+                            <div class="face back">  <x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="c"><div class="preen"><div class="hardware"></div>                           </div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x><x class="m"><div class="preen"></div></x><x class="q"><div class="preen"></div></x></div>
                         </div>
                     </div>
                 </div>
