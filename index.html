@@ -72,12 +72,12 @@
 
         function acel()
         {
+            alert(typeof device != "undefined")
             if(typeof device != "undefined") $(".hardware").html(`${device.model}<br>${device.platform} ${device.version}`);
             else $(".hardware").html(`dispositivo: desconhecido`);
 
             navigator.getBattery().then(function(battery)
             {
-                alert("a")
                 function atualizarBateria(b)
                 {
                     $(".batNum").html(`${b*100}%`);
