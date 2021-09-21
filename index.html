@@ -136,21 +136,15 @@
 		 
 		 function acel()
 		 {
-			let acl = new Accelerometer({frequency: 60});
-			acl.addEventListener('reading', () => {
-				$("body").html("asasd"+ acl.x +" "+ acl.y +" "+ acl.z);
-			});
-
-			acl.start();
-
 		    navigator.vibrate([300]);
 			$("#exibeHardware").hide();
 		    $("#exibeRede").hide();
 			$("#exibeBateria").hide();
 			$("#exibeAcelerometro").show();
 			
-			if(window.DeviceOrientationEvent || true)
+			if(window.DeviceOrientationEvent)
 			{
+			
 			   window.addEventListener('deviceorientation', function(event)
 			   {
 			       var x= Math.round(event.gamma);
