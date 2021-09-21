@@ -141,7 +141,7 @@
 
                     var saida = `X: ${x}<br>Y: ${y}<br>R: ${r}`;
 
-                    moved(-x, y)
+                    moved(x, y, r)
                 
                 
                 $(".front > x:nth-child(5) > div").html(saida)
@@ -196,7 +196,7 @@
         var cubeY = 90;
         var isDrawing = false;
 
-        function moved(x, y)
+        function moved(x, y, r)
         {
             // cubeX += x;
             // cubeY += y;
@@ -213,8 +213,8 @@
             // cube.css("transform", `rotateY(${cubeX}deg)`);
             // $(".cube2").css("transform", `rotateX(${-cubeY+90}deg)`);
 
-            cube.css("transform", `rotateY(${x}deg)`);
-            $(".cube2").css("transform", `rotateX(${y}deg)`);
+            cube.css("transform", `rotateY(${y-90}deg)`);
+            $(".cube2").css("transform", `rotateX(${x}deg)`);
         }
         
     
