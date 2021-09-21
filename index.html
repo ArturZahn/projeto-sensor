@@ -68,53 +68,107 @@
             acel();
         }
         
-        function acel()
-        {
-        // navigator.getBattery().then(function(battery)
+        // function acel()
         // {
-        //    $("#exibeBasteria").html("Nível da bateria:" + battery.level * 100 + "%");
-        //    battery.onlevelchange = function()
-        //    {
-        //       $("#exibeBsateria").html("Nível da bateria:" + battery.level * 100 + "%");               
-        //    }                          
-        // })    
-        navigator.vibrate([300]);
-        $("#exibeAcelerometro").show();
+        // // navigator.getBattery().then(function(battery)
+        // // {
+        // //    $("#exibeBasteria").html("Nível da bateria:" + battery.level * 100 + "%");
+        // //    battery.onlevelchange = function()
+        // //    {
+        // //       $("#exibeBsateria").html("Nível da bateria:" + battery.level * 100 + "%");               
+        // //    }                          
+        // // })    
+        // navigator.vibrate([300]);
+        // $("#exibeAcelerometro").show();
         
-        if(window.DeviceOrientationEvent)
-        {
+        // if(window.DeviceOrientationEvent)
+        // {
         
-            window.addEventListener('deviceorientation', function(event)
-            {
-                console.log("asdasdas")
+        //     window.addEventListener('deviceorientation', function(event)
+        //     {
+        //         console.log("asdasdas")
 
                 
-                var x= Math.round(event.gamma);
-                var y= Math.round(event.beta);
-                var r= Math.round(event.alpha);
+        //         var x= Math.round(event.gamma);
+        //         var y= Math.round(event.beta);
+        //         var r= Math.round(event.alpha);
                 
-                moved(x,y);
+        //         moved(x,y);
                 
-                var saida = `X: ${x}<br>Y: ${y}<br>R: ${r}`;
-                
-                
-                $(".front > x:nth-child(5) > div").html(saida)
+        //         var saida = `X: ${x}<br>Y: ${y}<br>R: ${r}`;
                 
                 
-                
-                // novaX= atualX + x;
-                // novaY = atualY + y;
+        //         $(".front > x:nth-child(5) > div").html(saida)
                 
                 
                 
-            },true)
-        }   
-        else
+        //         // novaX= atualX + x;
+        //         // novaY = atualY + y;
+                
+                
+                
+        //     },true)
+        // }   
+        // else
+        // {
+        //     alert("Recurso não disponível no seu dispositivo!!");            
+        // }             
+        // }
+       
+        function acel()
         {
-            alert("Recurso não disponível no seu dispositivo!!");            
-        }             
+            navigator.vibrate([300]);
+            $("#exibeHardware").hide();
+            $("#exibeRede").hide();
+            $("#exibeBateria").hide();
+            $("#exibeAcelerometro").show();
+            
+            if(window.DeviceOrientationEvent)
+            {
+            
+                asdsa = 0;
+                window.addEventListener('deviceorientation', function(event)
+                {
+                    var x= Math.round(event.gamma);
+                    var y= Math.round(event.beta);
+                    var r= Math.round(event.alpha);
+                    
+                    var saida= "Eixo X: " + x;
+                    saida += "<br> Eixo Y: " + y;
+                    saida += "<br>Rotação: " + r;
+
+                    
+                    
+                    if(asdsa < 10)
+                    {
+                        asdsa++;
+
+                        alert(saida)
+
+                    }
+                    
+                    // $("#exibeAcelerometro").html(saida);
+                    
+                    // $("#circulo").show();
+                    
+                    // atualX= $("#circulo").offset().left;
+                    // atualY= $("#circulo").offset().top;
+                    
+                    // novaX= atualX + x;
+                    // novaY = atualY + y;
+                    
+                    // $("#circulo").offset({left:novaX,top:novaY});
+                    
+                    
+                },true)
+            }   
+            else
+            {
+                alert("Recurso não disponível no seu dispositivo!!");			
+            }			 
         }
-        
+
+
         function sair()
         {
             navigator.notification.confirm('Deseja sair do aplicativo? ', resposta,'Mensagem',['Não','Sim']);
