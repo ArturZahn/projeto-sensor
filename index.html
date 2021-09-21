@@ -135,19 +135,23 @@
                     var y= Math.round(event.beta);
                     var r= Math.round(event.alpha);
                     
-                    var saida= "Eixo X: " + x;
-                    saida += "<br> Eixo Y: " + y;
-                    saida += "<br>Rotação: " + r;
+                    // var saida= "Eixo X: " + x;
+                    // saida += "<br> Eixo Y: " + y;
+                    // saida += "<br>Rotação: " + r;
 
+                    var saida = `X: ${x}<br>Y: ${y}<br>R: ${r}`;
+                
+                
+                $(".front > x:nth-child(5) > div").html(saida)
                     
                     
-                    if(asdsa < 10)
-                    {
-                        asdsa++;
+                    // if(asdsa < 10)
+                    // {
+                    //     asdsa++;
 
-                        alert(saida)
+                    //     alert(saida)
 
-                    }
+                    // }
                     
                     // $("#exibeAcelerometro").html(saida);
                     
