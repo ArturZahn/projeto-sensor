@@ -52,13 +52,12 @@
     <script type="text/javascript">
         window.onload=function()
         {
-            
-            alert("A")
 
             $("body").removeClass("ui-overlay-a");
             $("body").addClass("ui-overlay-b");
             
-            document.addEventListener('deviceready', iniciar);               
+            document.addEventListener('deviceready', iniciar);     
+            iniciar();          
         }
         
         function iniciar()
@@ -67,7 +66,6 @@
 
             cube = $(".cube");
 
-            alert("B")
             acel();
         }
         
@@ -121,7 +119,6 @@
         function acel()
         {
             
-            alert("C")
             navigator.vibrate([300]);
             $("#exibeHardware").hide();
             $("#exibeRede").hide();
@@ -130,7 +127,6 @@
             
             if(window.DeviceOrientationEvent)
             {
-                alert("D")  
             
                 asdsa = 0;
                 window.addEventListener('deviceorientation', function(event)
